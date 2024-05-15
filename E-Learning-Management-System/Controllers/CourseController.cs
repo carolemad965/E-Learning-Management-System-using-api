@@ -74,7 +74,7 @@ namespace E_Learning_Management_System.Controllers
             });
         }
         [HttpGet("ByCourseId/{courseId:int}")]
-        [Authorize]
+       // [Authorize]
         public IActionResult GetCourseByCourseId(int courseId)
         {
             var course = courseRepository.Get(c => c.Id == courseId);
