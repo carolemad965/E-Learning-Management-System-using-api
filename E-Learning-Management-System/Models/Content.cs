@@ -7,6 +7,8 @@ namespace E_Learning_Management_System.Models
     {
         public int Id { get; set; }
         public string Type { get; set; }
+        public string videoPathURL { get; set; }
+        public string content { get; set; }
         public bool IsDeleted { get; set; } = false;
         [ForeignKey("Course")]
         public int? CourseId { get; set; }

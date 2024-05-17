@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Learning_Management_System.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240511201946_finalcourse")]
-    partial class finalcourse
+    [Migration("20240515131134_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -213,6 +213,14 @@ namespace E_Learning_Management_System.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("videoPathURL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

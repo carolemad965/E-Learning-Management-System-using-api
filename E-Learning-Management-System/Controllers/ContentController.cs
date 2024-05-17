@@ -53,7 +53,7 @@ namespace E_Learning_Management_System.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+      //  [Authorize]
         public IActionResult GetAll()
         {
             List<Content> contents = contentRepository.GetAll();
@@ -63,6 +63,8 @@ namespace E_Learning_Management_System.Controllers
                 {
                     Id = c.Id,
                     Type = c.Type,
+                    content=c.content,
+                    videoPathURL= c.videoPathURL,
                 }).ToList();
                 return Ok(dtos);
             }
@@ -82,6 +84,8 @@ namespace E_Learning_Management_System.Controllers
             {
                 Id = content.Id,
                 Type = content.Type,
+                content = content.content,
+                videoPathURL = content.videoPathURL,
             };
             return Ok(dto);
         }
@@ -138,7 +142,7 @@ namespace E_Learning_Management_System.Controllers
         }
 
         [HttpGet("course/{courseId}")]
-        [Authorize]
+        //[Authorize]
         public IActionResult GetContentsByCourseId(int courseId)
         {
             try
@@ -150,14 +154,17 @@ namespace E_Learning_Management_System.Controllers
                 {
                     return NotFound("Course not found");
                 }
-                List<Content> Contents = contentRepository.GetAll().ToList();
+                // List<Content> Contents = contentRepository.GetAll().ToList();
                 // Retrieve contents associated with the course
-                List<ContentDTO> contentDTOs = Contents.Where(c=>c.Id==courseId).Select(c => new ContentDTO
-                {
-                     Id = c.Id,
-                    Type = c.Type,
-                   
-                }).ToList();
+                List<ContentDTO> contentDTOs = contentRepository.GetAll()
+             .Where(c => c.CourseId == courseId)
+             .Select(c => new ContentDTO
+             {
+                 Id = c.Id,
+                 Type = c.Type,
+                 content = c.content, // Ensure property names match
+                 videoPathURL = c.videoPathURL
+             }).ToList();
 
                 return Ok(contentDTOs);
             }
