@@ -1,4 +1,4 @@
-
+﻿
 using E_Learning_Management_System.Models;
 using E_Learning_Management_System.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using E_Learning_Management_System.Controllers;
 
 namespace E_Learning_Management_System
 {
@@ -111,7 +112,8 @@ namespace E_Learning_Management_System
             //builder.Services.AddScoped<IRepository<Course>, Repository<Course>>();
             builder.Services.AddScoped<IRepository<Instructor>, Repository<Instructor>>();
             builder.Services.AddScoped<IRepository<Learner>, Repository<Learner>>();
-            
+         builder.Services.AddScoped<IRepository<Adminstrator>, Repository<Adminstrator>>();
+
             builder.Services.AddScoped<IRepository<Certificate>, Repository<Certificate>>();
             builder.Services.AddScoped<IRepository<Quiz>, Repository<Quiz>>();
 
@@ -137,6 +139,8 @@ namespace E_Learning_Management_System
 
 
             app.MapControllers();
+
+                       
 
             app.Run();
         }

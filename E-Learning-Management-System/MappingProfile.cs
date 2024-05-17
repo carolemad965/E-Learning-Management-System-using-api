@@ -21,7 +21,8 @@ namespace E_Learning_Management_System
             CreateMap<LearnerDTO, Learner>();
             CreateMap<Learner, LearnerDTO>();
 
-
+            CreateMap<AdminstratorDTO, Adminstrator>();
+            CreateMap<Adminstrator, AdminstratorDTO > ();
 
 
 
